@@ -1,7 +1,8 @@
-
 const Home = () => {
     return (
-        <div>Home</div>
+        <div className="absolute inset-0 flex mt-36">
+            Home
+        </div>
     );
 }
 
