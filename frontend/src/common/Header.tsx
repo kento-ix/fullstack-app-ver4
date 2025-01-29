@@ -1,34 +1,41 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SignUp from "../components/auth/signup";
+import Modal from "../components/auth/modal";
+
 const Header = () => {
     const navigate = useNavigate();
-
-    const handleNavigationClick = (path: string) => {
-        navigate(path);
-    };
+    const [modal, setModal] = useState(false); //for ther register and login
+    const openModal = () => setModal(true);
+    const closeModal = () => setModal(false);
 
     return(
-        <div className="w-full bg-slate-800 h-36 m-0 text-white">
+        <div className="w-full bg-slate-800 h-20 m-0 text-white flex justify-between items-center">
             <Link to="/" className="p-3 text-left">
                 Home
             </Link>
 
             <div className="space-x-6 text-right">
-                <button className="hover:text-blue-300">
+                <button className="hover:text-blue-300" onClick={openModal}>
                     Login  
                 </button>
-                <button className="hover:text-blue-300">
-                    Signin
+                <button className="hover:text-blue-300" onClick={openModal}>
+                    SignUp
                 </button>
-                <button onClick={() => handleNavigationClick("/mylisting")} className="hover:text-blue-400">
-                    My Listing
-                </button>
-                <button onClick={() => handleNavigationClick("/favorite")} className="hover:text-blue-400">
+                <Link to="/mylisting" className="hover:text-blue-400">
+                    MyListing
+                </Link>
+                <Link to="/favorite" className="hover:text-blue-400">
                     Favorite
-                </button>
-                <button onClick={() => handleNavigationClick("/setting")} className="hover:text-blue-400">
+                </Link>
+                <Link to="/setting" className="hover:text-blue-400">
                     Setting
-                </button>
+                </Link>
             </div>
+
+            <Modal isOpen={modal} onClose={closeModal}>
+                <div className="text-black">Hello</div>
+            </Modal>
         </div>
     );
 }
