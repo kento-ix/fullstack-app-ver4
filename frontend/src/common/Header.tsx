@@ -15,6 +15,7 @@ const Header = () => {
 
     const closeModal = () => {
         setModal(false);
+        setModalType(null);
       };
 
     return(
@@ -22,10 +23,10 @@ const Header = () => {
             <div className="max-w-[2000px] w-full flex justify-between items-center px-4">
                 <Link to="/" className="p-3"> Home </Link> 
 
-                {/* fixed comtent */}
+                {/* fixed component */}
                 <div className="space-x-10 flex">
-                    <button className="hover:text-blue-300" onClick={() => openModal('signup')}> Login </button>
-                    <button className="hover:text-blue-300" onClick={() => openModal('login')}> SignUp </button>
+                    <button className="hover:text-blue-300" onClick={() => openModal('login')}> Login </button>
+                    <button className="hover:text-blue-300" onClick={() => openModal('signup')}> SignUp </button>
                     <Link to="/mylisting" className="hover:text-blue-400"> MyListing </Link>
                     <Link to="/favorite" className="hover:text-blue-400"> Favorite </Link>
                     <Link to="/setting" className="hover:text-blue-400"> Setting </Link>
@@ -33,7 +34,7 @@ const Header = () => {
             </div>
 
             <Modal isOpen={modal} onClose={closeModal}>
-                {modalType === 'login' ? <Login /> : <SignUp />}
+                {modalType === 'login' ? <Login /> : modalType === 'signup' ? <SignUp />: null}
             </Modal>
         </div>
 

@@ -1,6 +1,8 @@
 const SignUp = () => {
     return(
-        <div></div>
+        <div className="text-black">
+            register
+        </div>
     );
 }
 
