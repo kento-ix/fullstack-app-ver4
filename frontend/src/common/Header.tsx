@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link} from "react-router-dom";
 import Login from "../components/auth/login";
-import SignUp from "../components/auth/signup";
+import Register from "../components/auth/register";
 import Modal from "../components/auth/modal";
 
 const Header = () => {
     const [modal, setModal] = useState(false); //for ther register and login
-    const [modalType, setModalType] = useState<'login' | 'signup'| null>(null);
+    const [modalType, setModalType] = useState<'login' | 'register'| null>(null);
 
-    const openModal = (type: 'login' | 'signup') => {
+    const openModal = (type: 'login' | 'register') => {
         setModalType(type);
         setModal(true);
     };
@@ -26,7 +26,7 @@ const Header = () => {
                 {/* fixed component */}
                 <div className="space-x-10 flex">
                     <button className="hover:text-blue-300" onClick={() => openModal('login')}> Login </button>
-                    <button className="hover:text-blue-300" onClick={() => openModal('signup')}> SignUp </button>
+                    <button className="hover:text-blue-300" onClick={() => openModal('register')}> SignUp </button>
                     <Link to="/mylisting" className="hover:text-blue-400"> MyListing </Link>
                     <Link to="/favorite" className="hover:text-blue-400"> Favorite </Link>
                     <Link to="/setting" className="hover:text-blue-400"> Setting </Link>
@@ -34,7 +34,7 @@ const Header = () => {
             </div>
 
             <Modal isOpen={modal} onClose={closeModal}>
-                {modalType === 'login' ? <Login /> : modalType === 'signup' ? <SignUp />: null}
+                {modalType === 'login' ? <Login /> : modalType === 'register' ? <Register />: null}
             </Modal>
         </div>
 

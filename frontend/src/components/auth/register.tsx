@@ -1,6 +1,5 @@
-import axios from "axios";
 
-const SignUp = () => {
+const Register = () => {
     return(
         <div className="text-black">
             register
@@ -8,4 +7,4 @@ const SignUp = () => {
     );
 }
 
-export default SignUp;
+export default Register;
