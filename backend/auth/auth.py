@@ -28,3 +28,22 @@ def create_user():
 
     except Exception as e:
         return make_response(jsonify({'message': 'Error creating user', 'error': str(e)}), 500)
+    
+# Login route
+@auth.route('/api/flask/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json()
+        user = User.query.filter_by(email=data['email']).first()
+
+        if user and check_password_hash(user.password, data['password']):
+            access_token = create_access_token(identity=user.id)
+            return make_response(jsonify({
+                'message': 'Login successful',
+                'access_token': access_token,
+                'user': user.json()
+            }), 200)
+
+        return make_response(jsonify({'message': 'Invalid email or password'}), 401)
+    except Exception as e:
+        return make_response(jsonify({'message': 'Error during login', 'error': str(e)}), 500)
