@@ -1,2 +1,7 @@
 *node_module
 .DS_Store
+*.env
+/backend/README.md
+__pycache__/
+*.pyc
+*.pyo
